@@ -1,0 +1,59 @@
+.sidebar-container {
+  background: var(--primary);
+  height: 100%;
+  position: fixed;
+  width: 200px;
+  overflow: hidden;
+  border-left: 10px solid var(--primary);
+}
+
+.nav-menu {
+  position: absolute;
+  width: 100%;
+}
+
+.nav {
+  position: relative;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white);
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.nav-menu .active .nav{
+    background-color: var(--white) ;
+    color: var(--primary);
+}
+
+.nav-menu .active .nav::before{
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.nav-menu .active .nav::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  background-color: transparent;
+  pointer-events: none;
+}
