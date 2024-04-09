@@ -17,7 +17,7 @@ export const Composant = () => {
     
   return (
     <div className='composant-container'>
-        {message}
+        
         <div className="graph">
             
         </div>

@@ -1,0 +1,20 @@
+.control-container{
+    width: 230px;
+    height: 180px;
+    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.05);
+    border-radius: 25px;
+    padding: var(--space-s);
+    background: #fff;
+    margin-top: var(--space-md);
+}
+
+.control{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.control-state{
+    margin-left: var(--space-s);
+    font-weight: 500;
+}
