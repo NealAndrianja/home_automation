@@ -17,4 +17,5 @@
 .control-state{
     margin-left: var(--space-s);
     font-weight: 500;
+    color: var(--black);
 }

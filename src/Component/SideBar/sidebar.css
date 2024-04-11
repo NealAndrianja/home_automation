@@ -22,14 +22,14 @@
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: var(--white);
+  color: var(--black);
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
 }
 
 .nav-menu .active .nav{
     background-color: var(--white) ;
-    color: var(--primary);
+    color: var(--black);
 }
 
 .nav-menu .active .nav::before{

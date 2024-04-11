@@ -12,7 +12,29 @@
     flex: 8;
     padding: var(--space-l);
 }
+
+.room-section{
+    padding-top: var(--space-md);
+}
+
+.room-section-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-home{
+    font-size: 1.5em;
+}
+
 .home-grid-right{
     flex: 4;
     padding: var(--space-l);
+}
+
+.room-section-middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
