@@ -1,0 +1,32 @@
+.monitoring-container {
+  padding-top: var(--space-md);
+}
+
+.monitoring-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.monitoring-title{
+    font-size: 1.25em;
+}
+
+.monitoring-block{
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.05);
+}
+
+.monitoring-block-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.monitoring-block-desc{
+    display: flex;
+    align-items: center;
+}

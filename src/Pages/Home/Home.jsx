@@ -4,7 +4,7 @@ import { Welcome } from "../../Component/Welcome/Welcome";
 import { Control } from "../../Component/Control/Control";
 import { MuiSelect } from "../../Component/mui_component/MuiSelect";
 import { TempGauge } from "../../Component/mui_component/TempGauge";
-import { AreaRecharts } from "../../Component/mui_component/AreaRecharts";
+import { Monitoring } from "../../Component/Monitor/Monitoring";
 
 
 
@@ -33,11 +33,12 @@ export const Home = () => {
               <Control />
             </div>
             <div className="room-section-bottom">
-              <AreaRecharts/>
+              
             </div>
           </div>
         </div>
         <div className="home-grid-right">
+              <Monitoring/>
 
         </div>
       </div>
