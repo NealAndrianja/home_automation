@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./control.css";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
+import socket from '../../socketFile'
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -56,6 +57,12 @@ const IOSSwitch = styled((props) => (
 
 export const Control = () => {
   const [checked, setChecked] = useState(true);
+
+  useEffect(() => {
+    socket.emitMessage("IO", checked);
+  },[checked])
+
+  
 
   const handleChange = (event) => {
     setChecked(event.target.checked);

@@ -28,18 +28,16 @@ export const Home = () => {
             </div>
             <div className="room-section-middle">
               <Control />
-              <Control />
-              <Control />
-              <Control />
+              
             </div>
             <div className="room-section-bottom">
-              
+            <Monitoring/>
+
             </div>
           </div>
         </div>
         <div className="home-grid-right">
-              <Monitoring/>
-
+              
         </div>
       </div>
     </div>

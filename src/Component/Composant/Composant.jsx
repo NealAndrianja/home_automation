@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import io from "socket.io-client";
+import SocketInstance from './socketFile'
 
 import "./composant.css"
 
-const socket = io.connect("http://192.168.1.25:3001");
+const socket = new SocketInstance();
 
 export const Composant = () => {
     const [message, setMessage] = useState("");

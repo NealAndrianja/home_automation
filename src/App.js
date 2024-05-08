@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./Component/SideBar/Sidebar";
 import { Home } from "./Pages/Home/Home";
-import "./App.css"
+import "./App.css";
+import socket from './socketFile'
 
-const socket = io.connect("http://192.168.1.25:3001");
 function App() {
   const [message, setMessage] = useState("");
-
-  const sendMessage = () => {
-    socket.emit("sent_message", { message });
-  };
+  const topics = [
+    "home/esp32/voltage",
+    "home/esp32/current",
+    "home/esp32/power",
+    "home/esp32/energy",
+    "home/esp32/frequency",
+    "home/esp32/pf",
+  ];
 
   useEffect(() => {
-    socket.on("mqtt", (data) => {
-      setMessage(data);
-      console.log(data);
-    });
+    socket.connectAll()
   }, [socket]);
   return (
     <div className="app-container">
