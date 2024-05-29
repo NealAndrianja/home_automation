@@ -8,18 +8,19 @@ import {
   Tooltip,
 } from "recharts";
 
-export const AreaRecharts = ({ data }) => {
+export const AreaRecharts = ({ data, monitoredData, width }) => {
   if (!data) {
     return <div>Loading data...</div>; // Display loading message while data fetches
   }
   const electricityData = data.map((ed) => ({
     ...ed,
+    key: "voltage",
     voltage: Number(ed._value),
-    date: `${new Date(ed._time).getHours()}:${new Date(ed._time).getMinutes()}`,
+    date: `${(new Date(ed._time).getHours().toString()).padStart(2,'0')}:${new Date(ed._time).getMinutes().toString().padStart(2,'0')}`,
   }));
   return (
     <AreaChart
-      width={400}
+      width={width}
       height={200}
       data={electricityData}
       margin={{

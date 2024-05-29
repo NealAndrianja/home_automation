@@ -5,8 +5,7 @@ import { Control } from "../../Component/Control/Control";
 import { MuiSelect } from "../../Component/mui_component/MuiSelect";
 import { TempGauge } from "../../Component/mui_component/TempGauge";
 import { Monitoring } from "../../Component/Monitor/Monitoring";
-
-
+import socket from "../../socketFile";
 
 const room = ["living room", "garage", "kids room", "parent room"];
 export const Home = () => {
@@ -28,16 +27,22 @@ export const Home = () => {
             </div>
             <div className="room-section-middle">
               <Control />
-              
             </div>
             <div className="room-section-bottom">
-            <Monitoring/>
-
+              <Monitoring
+                monitoredData={"power"}
+                type={{ title: "Socket Monitoring", type: "Power", unit: "W", topic: "home/esp32/power" }}
+                width={800}
+              />
             </div>
           </div>
         </div>
         <div className="home-grid-right">
-              
+          <Monitoring
+            monitoredData={"voltage"}
+            type={{ title: "Power Monitoring", type: "Voltage", unit: "V", topic: "home/esp32/voltage" }}
+            width={350}
+          />
         </div>
       </div>
     </div>

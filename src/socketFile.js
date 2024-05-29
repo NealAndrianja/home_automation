@@ -13,13 +13,13 @@ class SocketInstance {
     this.socket = io.connect("http://192.168.1.25:3001");
   }
 
-  connectAll = () => {
-    topics.forEach((topic) =>
-      this.socket.on(topic, (data) => {
-        // console.log(`Message received: ${data} from ${topic}`);
-      })
-    );
-  }
+  // connectAll = () => {
+  //   topics.forEach((topic) =>
+  //     this.socket.on(topic, (data) => {
+        
+  //     })
+  //   );
+  // }
 
   emitMessage = (topic, message) =>{
     this.socket.emit(topic, message);
