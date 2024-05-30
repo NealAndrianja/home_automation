@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Sidebar from "./Component/SideBar/Sidebar";
 import { Home } from "./Pages/Home/Home";
 import "./App.css";
+import { Device } from "./Pages/Device/Device";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -12,6 +13,7 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Device" element={<Device />} />
       </Routes>
     </div>
   );

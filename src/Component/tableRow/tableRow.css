@@ -1,0 +1,17 @@
+tr{
+    border-top: solid 1px var(--dark-grey);
+}
+
+td:nth-child(even){
+    background-color: var(--grey);
+}
+
+td{
+    padding: var(--space-xs) var(--space-md);
+}
+
+td:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

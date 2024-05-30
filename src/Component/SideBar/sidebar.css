@@ -9,6 +9,8 @@
 
 .nav-menu {
   position: absolute;
+  
+  top: 50px;
   width: 100%;
 }
 

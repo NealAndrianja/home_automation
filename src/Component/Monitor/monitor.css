@@ -13,7 +13,7 @@
 }
 
 .monitoring-block{
-    margin-top: var(--space-md);
+    margin-top: var(--space-s);
     padding: var(--space-md);
     background: #fff;
     border-radius: 25px;
