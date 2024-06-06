@@ -40,6 +40,11 @@ export const Home = () => {
           </div>
         </div>
         <div className="home-grid-right">
+        <Monitoring
+            monitoredData={"temperature"}
+            type={{ title: "Temperature Monitoring", type: "Temperature", unit: "°C", topic: "home/esp32/temperature" }}
+            width={350}
+          />
           <Monitoring
             monitoredData={"voltage"}
             type={{ title: "Power Monitoring", type: "Voltage", unit: "V", topic: "home/esp32/voltage" }}

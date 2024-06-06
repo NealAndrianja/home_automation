@@ -35,6 +35,7 @@ export default function MuiSlider({brightness, handleChange}) {
           valueLabelDisplay="auto"
           onKeyDown={preventHorizontalKeyboardNavigation}
           color="asparagus"
+          step={15}
           value={brightness}
           onChange={handleChange}
         />

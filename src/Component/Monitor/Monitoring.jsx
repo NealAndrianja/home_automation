@@ -53,7 +53,7 @@ export const Monitoring = ({ monitoredData, type, width }) => {
       setMessage(mqttData);
       console.log(mqttData)
     })
-  }, [message]);
+  }, [message, period]);
   return (
     <div className="monitoring-container">
       <div className="monitoring-top">
