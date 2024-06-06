@@ -44,6 +44,13 @@ export const Welcome = () => {
 
   return (
     <div className="welcome-container">
+      <video
+        className="welcomeVideo"
+        src="https://cdn.pixabay.com/video/2018/09/24/18390-291585321_large.mp4"
+        autoPlay
+        loop
+        muted
+      ></video>
       <div className="welcome-left">
         <h1 className="hello">Hello, User1</h1>
         <p className="air-quality">
@@ -52,11 +59,11 @@ export const Welcome = () => {
         </p>
         <div className="weather">
           <div className="tempDiv">
-            <ThermostatIcon style={{fontSize: "2em"}}/>
+            <ThermostatIcon style={{ fontSize: "2em" }} />
             <span className="desc">+25°C</span>
           </div>
           <div className="weatherStateDiv">
-            <CloudIcon style={{fontSize: "2em"}}/>
+            <CloudIcon style={{ fontSize: "2em" }} />
             <span className="desc">Fuzzy cloud</span>
           </div>
         </div>

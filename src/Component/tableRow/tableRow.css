@@ -13,5 +13,33 @@ td{
 td:last-child{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+}
+
+.device-control{
+    /* display: flex;
+    align-items: center;
+    gap: 10px; */
+}
+
+.device-menu{
+    display: flex;
+    gap: 15px;
+}
+.device-menu-item{
+    cursor: pointer;
+    opacity: 0.3;
+    transition: all 0.3s ease-in-out;
+}
+
+.edit-icon:hover{
+    color: blue !important;
+}
+
+.delete-icon:hover{
+    color: red !important;
+}
+
+tr:hover .device-menu-item{
+    opacity: 1;
 }

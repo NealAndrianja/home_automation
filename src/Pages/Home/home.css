@@ -35,6 +35,6 @@
 .room-section-middle{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 25px;
     flex-wrap: wrap;
 }

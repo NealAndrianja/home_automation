@@ -34,7 +34,7 @@ export const AreaRecharts = ({ data, monitoredData, width }) => {
       <XAxis dataKey="date" />
       <YAxis />
       <Tooltip />
-      <Area type="monotone" dataKey="voltage" stroke="#70AE6E" fill="#70AE6E" />
+      <Area type="monotone" dataKey="voltage" stroke="#C97B84" fill="#C97B84" />
     </AreaChart>
   );
 };

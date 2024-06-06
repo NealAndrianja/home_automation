@@ -3,6 +3,7 @@ import "./control.css";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import socket from '../../socketFile'
+import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -78,6 +79,9 @@ export const Control = () => {
           checked={checked}
           onChange={handleChange}
         />
+      </div>
+      <div className="control-icon">
+        <ElectricalServicesIcon style={{fontSize: "50px", color: checked && "var(--complementary)"}}/>
       </div>
     </div>
   );

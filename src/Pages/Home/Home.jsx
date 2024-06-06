@@ -6,6 +6,7 @@ import { MuiSelect } from "../../Component/mui_component/MuiSelect";
 import { TempGauge } from "../../Component/mui_component/TempGauge";
 import { Monitoring } from "../../Component/Monitor/Monitoring";
 import socket from "../../socketFile";
+import { ControlSlide } from "../../Component/Control/ControlSlide";
 
 const room = ["living room", "garage", "kids room", "parent room"];
 export const Home = () => {
@@ -27,6 +28,7 @@ export const Home = () => {
             </div>
             <div className="room-section-middle">
               <Control />
+              <ControlSlide/>
             </div>
             <div className="room-section-bottom">
               <Monitoring

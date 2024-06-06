@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
-import './tableRow.css'
+import React, { useState } from "react";
+import "./tableRow.css";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
+import EditIcon from "@mui/icons-material/Edit";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { EditDeviceModal } from "../Modals/editDevice/EditDeviceModal";
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -54,27 +57,46 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
-export const TableRow = () => {
+export const TableRow = ({ device }) => {
   const [checked, setChecked] = useState(true);
+  const [editModal, setEditModal] = useState(false)
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
+  const toggleEditModal = () => {
+    setEditModal(!editModal);
+  };
+
   return (
     <>
-    <tr>
-        <td>AC</td>
-        <td>Blue Star</td>
-        <td>2MAC</td>
-        <td>356486</td>
-        <td><span className="control-state">{checked?"ON":"OFF"}</span>
-        <IOSSwitch
-          sx={{ m: 1 }}
-          defaultChecked
-          checked={checked}
-          onChange={handleChange}
-        /></td>
-    </tr>
+      <tr>
+        <td>{device.name}</td>
+        <td>{device.brand}</td>
+        <td>{device.model}</td>
+        <td>{device.serialNumber}</td>
+        <td>
+          <div className="device-control">
+            <span className="control-state">
+              {checked ? "Active" : "Inactive"}
+            </span>
+            <IOSSwitch
+              sx={{ m: 1 }}
+              defaultChecked
+              checked={checked}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="device-menu">
+            <EditIcon className="edit-icon device-menu-item" onClick={toggleEditModal}/>
+            <HighlightOffIcon className="delete-icon device-menu-item"/>
+          </div>
+        </td>
+      </tr>
+      {
+        editModal && <EditDeviceModal toggleEditModal={toggleEditModal}/>
+      }
     </>
-  )
-}
+  );
+};

@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./device.css";
 import { TableRow } from "../../Component/tableRow/TableRow";
 import AddIcon from "@mui/icons-material/Add";
 import { AddDeviceModal } from "../../Component/Modals/addDevice/AddDeviceModal";
+import axios from "axios";
+
 
 export const Device = () => {
     const [showModal, setShowModal] = useState(false);
+    const [devices, setDevices] = useState([])
+
+    const fetchData = async () => {
+      const response = await axios.get("http://192.168.1.25:3001/data/devices");
+      const data = await response.data;
+      setDevices(data)
+    }
+
+    useEffect(() => {
+      try {
+        fetchData()
+      } catch (error) {
+        
+      }
+    },[devices])
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -29,11 +46,16 @@ export const Device = () => {
             <th>Serial N°</th>
             <th>Status</th>
           </tr>
-          <TableRow />
-          <TableRow />
-          <TableRow />
-          <TableRow />
-          <TableRow />
+          {
+            devices.map((device) => {
+              return (
+                <TableRow
+                  key={device.serialNumber}
+                  device={device}
+                />
+              );
+            })
+          }
         </table>
       </div>
       {showModal && <AddDeviceModal toggleModal={toggleModal} />}

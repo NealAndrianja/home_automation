@@ -58,7 +58,7 @@
 }
 
 tr:first-child{
-    background: var(--accent);
+    background: var(--complementary);
     border: none;
     color: #fff;
 }
