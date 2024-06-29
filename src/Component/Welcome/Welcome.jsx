@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
+
 import "./welcome.css";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import CloudIcon from "@mui/icons-material/Cloud";
 
-const socket = io.connect("http://192.168.1.25:3001");
+
 const now = new Date(Date.now());
 const days = [
   "Sunday",

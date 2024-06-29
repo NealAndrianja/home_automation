@@ -17,7 +17,7 @@ export const AddDeviceModal = ({ toggleModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://192.168.1.25:3001/data/devices", formData);
+      await axios.post("http://192.168.1.198:3001/data/devices", formData);
       toggleModal()
     } catch (error) {
       console.log(error)

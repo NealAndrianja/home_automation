@@ -10,7 +10,7 @@ const topics = [
 ];
 class SocketInstance {
   constructor() {
-    this.socket = io.connect("http://192.168.1.25:3001");
+    this.socket = io.connect("http://192.168.1.198:3001");
   }
 
   // connectAll = () => {

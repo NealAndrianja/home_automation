@@ -11,7 +11,7 @@ export const Device = () => {
     const [devices, setDevices] = useState([])
 
     const fetchData = async () => {
-      const response = await axios.get("http://192.168.1.25:3001/data/devices");
+      const response = await axios.get("http://192.168.1.198:3001/data/devices");
       const data = await response.data;
       setDevices(data)
     }

@@ -39,7 +39,7 @@ export const Monitoring = ({ monitoredData, type, width }) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.1.25:3001/data/socket/${monitoredData}/-1${abstractPeriod()}`
+        `http://192.168.1.198:3001/data/socket/${monitoredData}/-1${abstractPeriod()}`
       );
       setData(response.data);
     } catch (err) {
