@@ -1,35 +1,75 @@
-.control-container{
+.control-container {
     width: 230px;
     height: 180px;
-    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.05);
+    box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.05);
     border-radius: 25px;
     padding: var(--space-s);
     background: #fff;
     margin-top: var(--space-md);
     position: relative;
-}
-
-.control{
+    overflow: hidden; /* Ensure no overflow */
+  }
+  
+  .control {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.control-state, .control-slide-value{
-    margin-left: var(--space-s);
+    width: 100%;
+    padding: 0 var(--space-s); /* Adjust padding for better spacing */
+  }
+  
+  .control-state, .control-slide-value {
     font-weight: 500;
     color: var(--black);
-}
-
+  }
+  
 .control-icon{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
-
-.slide-container{
+  
+  .slide-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
+  
+  /* Tablet and smaller screens */
+  @media (max-width: 768px) {
+    .control-container {
+      width: 200px;
+      height: 160px;
+    }
+  
+    .control-state, .control-slide-value {
+      font-size: 0.9em; /* Adjust font size for better readability */
+    }
+  
+    .control-icon {
+      font-size: 40px; /* Adjust icon size for better fit */
+    }
+  }
+  
+  /* Mobile screens */
+  @media (max-width: 480px) {
+    .control-container {
+      width: 150px;
+      height: 130px;
+      padding: var(--space-xs); /* Reduce padding */
+    }
+  
+    .control {
+      padding: 0 var(--space-xs); /* Adjust padding */
+    }
+  
+    .control-state, .control-slide-value {
+      font-size: 0.8em; /* Further adjust font size */
+    }
+  
+    .control-icon {
+      font-size: 30px; /* Further adjust icon size */
+    }
+  }
+  

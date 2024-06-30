@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 500;
+    z-index: 1000;
   }
   
   .overlay {
@@ -17,45 +17,26 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 501;
+    z-index: 1;
   }
   
-  .edit-device-modal {
+  .delete-confirmation-modal {
     position: relative;
     background: white;
     padding: 20px;
     border-radius: 10px;
     width: 400px;
-    z-index: 502;
+    z-index: 2;
+    text-align: center;
   }
   
-  .edit-device-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .form-element {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-element label {
-    margin-bottom: 5px;
-  }
-  
-  .form-element input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .form-buttons {
+  .modal-buttons {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
   }
   
-  .submit-button,
+  .confirm-button,
   .cancel-button {
     padding: 10px 20px;
     border: none;
@@ -63,8 +44,8 @@
     cursor: pointer;
   }
   
-  .submit-button {
-    background-color: #28a745;
+  .confirm-button {
+    background-color: #dc3545;
     color: white;
   }
   

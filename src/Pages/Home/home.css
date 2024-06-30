@@ -1,40 +1,101 @@
-.home-container{
-    position: absolute;
-    left: 200px;
-    width: calc(100% - 200px);
-}
-
-.home-grid{
+.home-container {
+    margin-left: 220px; /* initial margin to accommodate the sidebar */
+    transition: margin-left 0.3s ease;
+    width: calc(100% - 220px); /* adjust for sidebar width */
+  }
+  
+  .home-container h1 {
+    font-size: 24px;
+  }
+  
+  .home-container p {
+    font-size: 16px;
+    color: var(--black);
+  }
+  
+  .home-grid {
     display: flex;
-}
-
-.home-grid-left{
-    flex: 8;
-    padding: var(--space-l);
-}
-
-.room-section{
+    flex-wrap: wrap; /* allows for wrapping on smaller screens */
+  }
+  
+  .home-grid-left {
+    flex: 2;
+    padding: var(--space-md);
+    min-width: 600px; /* ensure a minimum width for content */
+  }
+  
+  .room-section {
     padding-top: var(--space-md);
-}
-
-.room-section-top{
+  }
+  
+  .room-section-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.user-home{
+  }
+  
+  .user-home {
     font-size: 1.5em;
-}
-
-.home-grid-right{
-    flex: 4;
-    padding: var(--space-l);
-}
-
-.room-section-middle{
+  }
+  
+  .home-grid-right {
+    flex: 1;
+    padding: var(--space-md);
+    min-width: 400px; /* ensure a minimum width for content */
+  }
+  
+  .room-section-middle {
     display: flex;
     align-items: center;
     gap: 25px;
     flex-wrap: wrap;
-}
+  }
+  
+  /* Tablet and smaller screens */
+  @media (max-width: 768px) {
+    .home-container {
+      margin-left: 170px; /* adjust according to sidebar width */
+      width: calc(100% - 170px); /* adjust for sidebar width */
+    }
+  
+    .home-container h1 {
+      font-size: 20px;
+    }
+  
+    .home-container p {
+      font-size: 14px;
+    }
+  
+    .home-grid-left,
+    .home-grid-right {
+      flex: 1;
+      padding: var(--space-s);
+      min-width: 280px; /* adjust minimum width for smaller screens */
+    }
+  }
+  
+  /* Mobile screens */
+  @media (max-width: 480px) {
+    .home-container {
+      margin-left: 0; /* no margin for sidebar */
+      margin-top: 50px;
+      width: 100%;
+      padding: var(--space-s);
+    }
+  
+    .home-container h1 {
+      font-size: 18px;
+    }
+  
+    .home-container p {
+      font-size: 12px;
+    }
+  
+    .home-grid-left,
+    .home-grid-right {
+      flex: 1;
+      padding: var(--space-xs);
+      min-width: 380; /* adapt to smaller screens */
+    }
+  }
+  

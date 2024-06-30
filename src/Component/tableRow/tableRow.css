@@ -8,13 +8,57 @@ td:nth-child(even){
 
 td{
     padding: var(--space-xs) var(--space-md);
-}
-
-td:last-child{
+}.table-row {
+    border-top: solid 1px var(--dark-grey);
+  }
+  
+  .table-row td:nth-child(even) {
+    background-color: var(--grey);
+  }
+  
+  .table-row td {
+    padding: var(--space-xs) var(--space-md);
+  }
+  
+  /* .table-row td:last-child {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  } */
+  
+  .device-control {
+    /* Optionally add styling for device control if needed */
+  }
+  
+  .device-actions {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .device-action {
+    cursor: pointer;
+    opacity: 0.3;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .device-action:hover {
+    opacity: 1;
+  }
+  
+  .edit-icon:hover {
+    color: blue !important;
+  }
+  
+  .delete-icon:hover {
+    color: red !important;
+  }
+  
+
+/* td:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
 
 .device-control{
     /* display: flex;

@@ -25,6 +25,12 @@ class SocketInstance {
     this.socket.emit(topic, message);
     console.log(message)
   }
+
+  listenMessage = (topic, callback) =>{
+    this.socket.on(topic, (data) => {
+      callback(data);
+    });
+  }
 }
 
 const socket = new SocketInstance();

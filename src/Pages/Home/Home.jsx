@@ -9,8 +9,10 @@ import socket from "../../socketFile";
 import { ControlSlide } from "../../Component/Control/ControlSlide";
 
 const room = ["living room", "garage", "kids room", "parent room"];
+
 export const Home = () => {
   const [selectedRoom, setSelectedRoom] = useState("");
+
   return (
     <div className="home-container">
       <div className="home-grid">
@@ -28,7 +30,7 @@ export const Home = () => {
             </div>
             <div className="room-section-middle">
               <Control />
-              <ControlSlide/>
+              <ControlSlide />
             </div>
             <div className="room-section-bottom">
               <Monitoring
@@ -40,7 +42,7 @@ export const Home = () => {
           </div>
         </div>
         <div className="home-grid-right">
-        <Monitoring
+          <Monitoring
             monitoredData={"temperature"}
             type={{ title: "Temperature Monitoring", type: "Temperature", unit: "°C", topic: "home/esp32/temperature" }}
             width={350}

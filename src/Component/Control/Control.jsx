@@ -61,6 +61,16 @@ export const Control = () => {
 
   useEffect(() => {
     socket.emitMessage("IO", checked);
+    // Listen for 'IO broadcast' event from server
+    socket.socket.on("IO broadcast", (data) => {
+      setChecked(data);
+      console.log("Broadcast received: " + data);
+    });
+
+    // Clean up listener on component unmount
+    return () => {
+      socket.socket.off("IO broadcast");
+    };
   },[checked])
 
   

@@ -1,21 +1,21 @@
-.device-page{
-    position: absolute;
-    left: 200px;
+.device-page {
+    margin-left: 220px; /* initial margin to accommodate the sidebar */
     width: calc(100% - 200px);
     padding: var(--space-l);
-}
-
-.device-top{
+  }
+  
+  .device-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.device-header{
-    font-size: 1.25em;
-}
-
-.add-device-button{
+  }
+  
+  .device-header {
+    font-size: 1.5em;
+    color: var(--secondary);
+  }
+  
+  .add-device-button {
     padding: var(--space-xs) var(--space-s);
     display: flex;
     align-items: center;
@@ -26,45 +26,76 @@
     color: #fff;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.25s ease-in-out;
-}
-
-.cancel-button{
+    transition: background 0.25s ease;
+  }
+  
+  .add-device-button:hover {
+    background: var(--secondary-hover);
+  }
+  
+  .device-list {
+    margin-top: var(--space-md);
+  }
+  
+  .device-list table {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    overflow: hidden;
+    border-collapse: collapse;
+  }
+  
+  .device-list th,
+  .device-list td {
+    font-size: 1em;
+    padding: var(--space-s);
+    text-align: left;
+  }
+  
+  .device-list th {
+    background: var(--complementary);
+    color: #fff;
+  }
+  
+  .cancel-button {
     padding: var(--space-xs) var(--space-s);
     background-color: var(--dark-grey);
     border: none;
     border-radius: 5px;
     font-weight: 500;
     cursor: pointer;
-}
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .device-page {
+        margin-left: 170px;
+      width: 100%; /* Set width to 100% */
+      padding: var(--space-s);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .device-page {
+        margin-left: 0;
+      width: 100%;
+      padding: var(--space-s);
+    }
+  
+    .add-device-button {
+      font-size: 0.75em;
+      padding: var(--space-xs);
+    }
 
-.add-device-button:hover{
-    background: var(--secondary-hover);
-}
-
-
-.device-list{
-    margin-top: var(--space-md);
-    
-}
-
-.device-list table{
-    width: 100%;
-    border-radius: 25px;
-    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.05);
-    background: #fff;
-    overflow: hidden;
-    border-collapse: collapse;
-}
-
-tr:first-child{
-    background: var(--complementary);
-    border: none;
-    color: #fff;
-}
-
-th{
-    font-size: 1.25em;
-    font-weight: normal;
-    padding: var(--space-s);
-}
+    .device-list {
+        
+      overflow-x: scroll;
+    }
+  
+    .device-list th,
+    .device-list td {
+      font-size: 0.75em;
+    }
+  }
+  

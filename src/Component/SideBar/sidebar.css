@@ -5,11 +5,12 @@
   width: 200px;
   overflow: hidden;
   border-left: 10px solid var(--primary);
+  z-index: 1000;
+  transition: transform 0.3s ease;
 }
 
 .nav-menu {
   position: absolute;
-  
   top: 50px;
   width: 100%;
 }
@@ -29,12 +30,16 @@
   border-bottom-left-radius: 30px;
 }
 
-.nav-menu .active .nav{
-    background-color: var(--white) ;
-    color: var(--black);
+.nav-icon {
+  margin-right: 8px;
 }
 
-.nav-menu .active .nav::before{
+.nav-menu .active .nav {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.nav-menu .active .nav::before {
   content: "";
   position: absolute;
   right: 0;
@@ -47,7 +52,7 @@
   pointer-events: none;
 }
 
-.nav-menu .active .nav::after{
+.nav-menu .active .nav::after {
   content: "";
   position: absolute;
   right: 0;
@@ -58,4 +63,99 @@
   box-shadow: 35px -35px 0 10px var(--white);
   background-color: transparent;
   pointer-events: none;
+}
+
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  color: var(--secondary);
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.menu-toggle.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cancel-toggle {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 50px;
+  color: var(--white);
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 150px;
+  }
+
+  .nav {
+    font-size: 14px;
+    height: 45px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .sidebar-container {
+    display: none;
+  }
+
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--primary);
+    border-top: 1px solid var(--primary);
+    z-index: 1000;
+  }
+
+  .bottom-nav-item {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    flex-direction: column;
+  }
+
+  .bottom-nav-item .nav-label {
+    font-size: 12px;
+  }
+
+  .bottom-nav-item.active {
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .cancel-toggle {
+    display: block;
+  }
 }

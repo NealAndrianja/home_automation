@@ -6,6 +6,7 @@
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: 500;
 }
 
 .overlay{
@@ -22,6 +23,7 @@
     padding: var(--space-md);
     border-radius: 18px;
     box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.05);
+    z-index: 501;
 }
 
 .add-device-modal h1{

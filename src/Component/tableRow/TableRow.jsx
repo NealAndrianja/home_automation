@@ -5,6 +5,7 @@ import Switch from "@mui/material/Switch";
 import EditIcon from "@mui/icons-material/Edit";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { EditDeviceModal } from "../Modals/editDevice/EditDeviceModal";
+import { DeleteConfirmationModal } from "../Modals/deleteConfirmation/DeleteConfirmationModal";
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -57,9 +58,10 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
-export const TableRow = ({ device }) => {
+export const TableRow = ({ device, onDelete, onEdit }) => {
   const [checked, setChecked] = useState(true);
-  const [editModal, setEditModal] = useState(false)
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -67,6 +69,28 @@ export const TableRow = ({ device }) => {
 
   const toggleEditModal = () => {
     setEditModal(!editModal);
+  };
+
+  const toggleDeleteModal = () => {
+    setDeleteModal(!deleteModal);
+  };
+
+  const handleDeleteClick = () => {
+    toggleDeleteModal();
+  };
+
+  const handleEditClick = () => {
+    toggleEditModal();
+  };
+
+  const handleEditDevice = (updatedDevice) => {
+    onEdit(updatedDevice);
+    toggleEditModal();
+  };
+
+  const handleDeleteConfirm = (serialNumber) => {
+    onDelete(serialNumber);
+    toggleDeleteModal();
   };
 
   return (
@@ -88,15 +112,34 @@ export const TableRow = ({ device }) => {
               onChange={handleChange}
             />
           </div>
+        </td>
+        <td>
           <div className="device-menu">
-            <EditIcon className="edit-icon device-menu-item" onClick={toggleEditModal}/>
-            <HighlightOffIcon className="delete-icon device-menu-item"/>
+            <EditIcon
+              className="edit-icon device-menu-item"
+              onClick={handleEditClick}
+            />
+            <HighlightOffIcon
+              className="delete-icon device-menu-item"
+              onClick={handleDeleteClick}
+            />
           </div>
         </td>
       </tr>
-      {
-        editModal && <EditDeviceModal toggleEditModal={toggleEditModal}/>
-      }
+      {editModal && (
+        <EditDeviceModal
+          device={device}
+          onEditDevice={handleEditDevice}
+          toggleEditModal={toggleEditModal}
+        />
+      )}
+      {deleteModal && (
+        <DeleteConfirmationModal
+          device={device}
+          onDeleteConfirm={handleDeleteConfirm}
+          onCancel={toggleDeleteModal}
+        />
+      )}
     </>
   );
 };

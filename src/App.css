@@ -1,6 +1,6 @@
 /* =========== Google Fonts ============ */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
 /* =============== Globals ============== */
 * {
@@ -11,36 +11,58 @@
   box-sizing: border-box;
 }
 
-:root{
-    --primary: #BFDBF7;
-    --secondary: #304C89;
-    --secondary-hover: #507CDC;
-    --accent: #C97B84;
-    --complementary: #70AE6E;
-    --white: #efefef;
-    --black: #2b2b2b;
-    --grey: #E5E5E5;
-    --dark-grey: #C2C2C2;
-    --space-xs: 5px;
-    --space-s: 10px;
-    --space-md: 30px;
-    --space-l: 50px;
-    --space-xl: 80px;
+:root {
+  --primary: #BFDBF7;
+  --secondary: #304C89;
+  --secondary-hover: #507CDC;
+  --accent: #C97B84;
+  --complementary: #70AE6E;
+  --white: #efefef;
+  --black: #2b2b2b;
+  --grey: #E5E5E5;
+  --dark-grey: #C2C2C2;
+  --space-xs: 0.5em;
+  --space-s: 1em;
+  --space-md: 2em;
+  --space-l: 4em;
+  --space-xl: 6em;
 }
 
-body{
-    padding: 0px;
-    margin: 0px;
-    min-height: 100vh;
-    overflow-x: hidden;
-    background-color: var(--white);
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--white);
 }
 
-.app-container{
-    position: relative;
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    height: 100vh;
-    width: 100%;
+.app-container {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .app-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  * {
+    font-size: 10px; /* Reduce font size for better readability on smaller screens */
+  }
 }

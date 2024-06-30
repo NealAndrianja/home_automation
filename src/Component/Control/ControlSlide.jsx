@@ -8,6 +8,16 @@ export const ControlSlide = () => {
 
   useEffect(() => {
     socket.emitMessage("brightness", brightness);
+    // Listen for 'IO broadcast' event from server
+    socket.socket.on("brightness broadcast", (data) => {
+      setBrightness(data);
+      console.log("Broadcast received: " + data);
+    });
+
+    // Clean up listener on component unmount
+    return () => {
+      socket.socket.off("brightness broadcast");
+    };
   }, [brightness]);
 
   const handleChange = (event, newValue) => {

@@ -1,32 +1,73 @@
 .monitoring-container {
-  padding-top: var(--space-md);
-}
-
-.monitoring-top{
+    padding: var(--space-md);
+  }
+  
+  .monitoring-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.monitoring-title{
+    flex-wrap: wrap; /* Ensure elements wrap on smaller screens */
+  }
+  
+  .monitoring-title {
     font-size: 1.25em;
-}
-
-.monitoring-block{
+    margin-bottom: var(--space-s); /* Ensure proper spacing */
+  }
+  
+  .monitoring-block {
     margin-top: var(--space-s);
     padding: var(--space-md);
     background: #fff;
     border-radius: 25px;
-    box-shadow: 0px 5px 12px 0px rgba(0,0,0,0.05);
-}
-
-.monitoring-block-top{
+    box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Ensure no overflow */
+  }
+  
+  .monitoring-block-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.monitoring-block-desc{
+    flex-wrap: wrap; /* Ensure elements wrap on smaller screens */
+  }
+  
+  .monitoring-block-desc {
     display: flex;
     align-items: center;
-}
+    margin-bottom: var(--space-s); /* Ensure proper spacing */
+  }
+  
+  .value {
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+  
+  /* Tablet and smaller screens */
+  @media (max-width: 768px) {
+    .monitoring-title {
+      font-size: 1.1em;
+    }
+  
+    .monitoring-block {
+      padding: var(--space-sm); /* Adjust padding for smaller screens */
+    }
+  
+    .value {
+      font-size: 1em;
+    }
+  }
+  
+  /* Mobile screens */
+  @media (max-width: 480px) {
+    .monitoring-title {
+      font-size: 1em;
+    }
+  
+    .monitoring-block {
+      padding: var(--space-xs); /* Further adjust padding for mobile */
+    }
+  
+    .value {
+      font-size: 0.9em;
+    }
+  }
+  

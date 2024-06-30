@@ -42,6 +42,7 @@
 
 .air-quality {
   font-size: 1em;
+  color: var(--white) !important;
   margin-bottom: var(--space-md);
 }
 
@@ -88,4 +89,77 @@
 .welcome-right .date {
   font-weight: 500;
   font-size: 1.5em;
+}
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+  .welcome-container {
+    height: auto;
+    min-height: 300px;
+    flex-direction: column;
+  }
+
+  .welcome-left,
+  .welcome-right {
+    flex: 1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .welcome-left {
+    margin-bottom: var(--space-md);
+  }
+
+  .weather .desc {
+    font-size: 1.2em;
+  }
+
+  .welcome-right .time .hours,
+  .welcome-right .time .minutes,
+  .welcome-right .time .column {
+    font-size: 4em;
+  }
+
+  .welcome-right .date {
+    font-size: 1em;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .welcome-container {
+    height: auto;
+    min-height: 300px;
+    flex-direction: column;
+    padding: var(--space-s);
+  }
+
+  .welcome-left,
+  .welcome-right {
+    flex: 1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hello {
+    font-size: 1.5em;
+  }
+
+  .air-quality {
+    font-size: 0.8em;
+  }
+
+  .weather .desc {
+    font-size: 1em;
+  }
+
+  .welcome-right .time .hours,
+  .welcome-right .time .minutes,
+  .welcome-right .time .column {
+    font-size: 3em;
+  }
+
+  .welcome-right .date {
+    font-size: 0.8em;
+  }
 }

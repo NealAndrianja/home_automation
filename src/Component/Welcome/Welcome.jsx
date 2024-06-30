@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-
+import axios from 'axios';
 import "./welcome.css";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
-import CloudIcon from "@mui/icons-material/Cloud";
-
 
 const now = new Date(Date.now());
 const days = [
@@ -29,14 +27,36 @@ const monthsFull = [
   "November",
   "December",
 ];
+
 export const Welcome = () => {
   const [date, setDate] = useState(now);
+  const [weatherData, setWeatherData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchWeatherData = async () => {
+    try {
+      const response = await axios.get('http://192.168.1.198:3001/weather/');
+      setWeatherData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      setError('Failed to fetch weather data');
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setTimeout(() => {
+    fetchWeatherData();
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
       setDate(new Date(Date.now()));
     }, 1000);
-  }, [date]);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const formatTime = (time) => {
     return String(time).padStart(2, "0");
@@ -60,13 +80,22 @@ export const Welcome = () => {
         <div className="weather">
           <div className="tempDiv">
             <ThermostatIcon style={{ fontSize: "2em" }} />
-            <span className="desc">+25°C</span>
+            <span className="desc">
+              {!loading ? `${weatherData?.current?.temp_c}°C` : "Loading weather data..."}
+            </span>
           </div>
           <div className="weatherStateDiv">
-            <CloudIcon style={{ fontSize: "2em" }} />
-            <span className="desc">Fuzzy cloud</span>
+            {!loading ? (
+              <>
+                <img src={weatherData?.current?.condition?.icon} alt="weather icon" />
+                <span className="desc">{weatherData?.current?.condition?.text}</span>
+              </>
+            ) : (
+              "Loading weather data..."
+            )}
           </div>
         </div>
+        {error && <p className="error">{error}</p>}
       </div>
       <div className="welcome-right">
         <div className="time">

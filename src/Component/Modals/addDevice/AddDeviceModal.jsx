@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./addDeviceModal.css";
 import axios from "axios";
 
-export const AddDeviceModal = ({ toggleModal }) => {
+export const AddDeviceModal = ({ toggleModal, onAdd }) => {
   const [formData, setFormData] = useState({
     name: "",
     brand: "",
@@ -17,10 +17,9 @@ export const AddDeviceModal = ({ toggleModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://192.168.1.198:3001/data/devices", formData);
-      toggleModal()
+      await onAdd(formData); // Call onAdd prop function to add new device
     } catch (error) {
-      console.log(error)
+      console.error("Error adding device:", error);
     }
   };
 
