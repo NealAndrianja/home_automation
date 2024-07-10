@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./monitor.css";
 import { AreaRecharts } from "../mui_component/AreaRecharts";
-import BoltIcon from "@mui/icons-material/Bolt";
 import { MuiSelect } from "../mui_component/MuiSelect";
 import axios from "axios";
 import socket from "../../socketFile";
@@ -11,7 +10,7 @@ import socket from "../../socketFile";
 
 const periodName = ["Year", "Month", "Week", "Day", "Hour", "Minute"];
 
-export const Monitoring = ({ monitoredData, type, width }) => {
+export const Monitoring = ({ monitoredData, type, Icon, width }) => {
   const [period, setPeriod] = useState("");
   const [message, setMessage] = useState("");
   const [data, setData] = useState(null);
@@ -68,7 +67,8 @@ export const Monitoring = ({ monitoredData, type, width }) => {
       <div className="monitoring-block">
         <div className="monitoring-block-top">
           <div className="monitoring-block-desc">
-            <BoltIcon style={{ fontSize: "1.5em", color: "#E7DC15" }} />
+            {/* <type.icon style={{ fontSize: "1.5em", color: "#E7DC15" }} /> */}
+            {Icon && <Icon style={{ fontSize: "1.5em", color: "#E7DC15" }} />}
             <h2 className="monitoring-desc">{type.type}</h2>
           </div>
           <span className="value">{message} {type.unit}</span>

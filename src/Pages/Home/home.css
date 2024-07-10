@@ -50,6 +50,13 @@
     gap: 25px;
     flex-wrap: wrap;
   }
+
+  .room-section-bottom{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
   
   /* Tablet and smaller screens */
   @media (max-width: 768px) {

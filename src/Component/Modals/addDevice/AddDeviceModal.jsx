@@ -8,6 +8,7 @@ export const AddDeviceModal = ({ toggleModal, onAdd }) => {
     brand: "",
     model: "",
     serialNumber: "",
+    isActive: false
   });
 
   const handleChange = (e) => {

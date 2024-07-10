@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./tableRow.css";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import EditIcon from "@mui/icons-material/Edit";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { EditDeviceModal } from "../Modals/editDevice/EditDeviceModal";
-import { DeleteConfirmationModal } from "../Modals/deleteConfirmation/DeleteConfirmationModal";
+import { DeviceContext } from "../../Context/DeviceContext";
+import { ACTIONS } from "../../Context/DeviceContext";
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -59,87 +59,36 @@ const IOSSwitch = styled((props) => (
 }));
 
 export const TableRow = ({ device, onDelete, onEdit }) => {
-  const [checked, setChecked] = useState(true);
-  const [editModal, setEditModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
+  // const [checked, setChecked] = useState(true);
+  const { dispatch } = useContext(DeviceContext);
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
-  const toggleEditModal = () => {
-    setEditModal(!editModal);
-  };
-
-  const toggleDeleteModal = () => {
-    setDeleteModal(!deleteModal);
+    dispatch({type: ACTIONS.TOGGLE_ACTIVE, payload: device})
+    onEdit(device)
+    // setChecked(event.target.checked);
   };
 
   const handleDeleteClick = () => {
-    toggleDeleteModal();
+    dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: { modalType: "delete", device } });
   };
 
   const handleEditClick = () => {
-    toggleEditModal();
-  };
-
-  const handleEditDevice = (updatedDevice) => {
-    onEdit(updatedDevice);
-    toggleEditModal();
-  };
-
-  const handleDeleteConfirm = (serialNumber) => {
-    onDelete(serialNumber);
-    toggleDeleteModal();
+    dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: { modalType: "edit", device } });
   };
 
   return (
-    <>
-      <tr>
-        <td>{device.name}</td>
-        <td>{device.brand}</td>
-        <td>{device.model}</td>
-        <td>{device.serialNumber}</td>
-        <td>
-          <div className="device-control">
-            <span className="control-state">
-              {checked ? "Active" : "Inactive"}
-            </span>
-            <IOSSwitch
-              sx={{ m: 1 }}
-              defaultChecked
-              checked={checked}
-              onChange={handleChange}
-            />
-          </div>
-        </td>
-        <td>
-          <div className="device-menu">
-            <EditIcon
-              className="edit-icon device-menu-item"
-              onClick={handleEditClick}
-            />
-            <HighlightOffIcon
-              className="delete-icon device-menu-item"
-              onClick={handleDeleteClick}
-            />
-          </div>
-        </td>
-      </tr>
-      {editModal && (
-        <EditDeviceModal
-          device={device}
-          onEditDevice={handleEditDevice}
-          toggleEditModal={toggleEditModal}
-        />
-      )}
-      {deleteModal && (
-        <DeleteConfirmationModal
-          device={device}
-          onDeleteConfirm={handleDeleteConfirm}
-          onCancel={toggleDeleteModal}
-        />
-      )}
-    </>
+    <tr>
+      <td>{device.name}</td>
+      <td>{device.brand}</td>
+      <td>{device.model}</td>
+      <td>{device.serialNumber}</td>
+      <td>
+        <IOSSwitch checked={device.isActive} onChange={handleChange} />
+      </td>
+      <td>
+        <EditIcon className="edit-icon" onClick={handleEditClick} />
+        <HighlightOffIcon className="delete-icon" onClick={handleDeleteClick} />
+      </td>
+    </tr>
   );
 };

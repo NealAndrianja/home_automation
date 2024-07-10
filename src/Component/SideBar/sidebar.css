@@ -146,9 +146,8 @@
     font-size: 12px;
   }
 
-  .bottom-nav-item.active {
-    background-color: var(--white);
-    color: var(--black);
+  .active .bottom-nav-item {
+    color: var(--white);
   }
 
   .menu-toggle {
