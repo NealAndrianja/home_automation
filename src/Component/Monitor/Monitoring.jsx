@@ -38,7 +38,7 @@ export const Monitoring = ({ monitoredData, type, Icon, width }) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.1.198:3001/data/socket/${monitoredData}/-1${abstractPeriod()}`
+        `http://192.168.1.198:3001/data/socket/${type.topic}/-1${abstractPeriod()}`
       );
       setData(response.data);
     } catch (err) {
@@ -48,10 +48,11 @@ export const Monitoring = ({ monitoredData, type, Icon, width }) => {
 
   useEffect(() => {
     fetchData();
-    socket.socket.on(type.topic, mqttData => {
+    socket.socket.on(type.topic, (mqttData) => {
       setMessage(mqttData);
-      console.log(mqttData)
-    })
+      console.log(mqttData);
+    });
+    return () => socket.socket.off(type.topic);
   }, [message, period]);
   return (
     <div className="monitoring-container">
@@ -71,9 +72,11 @@ export const Monitoring = ({ monitoredData, type, Icon, width }) => {
             {Icon && <Icon style={{ fontSize: "1.5em", color: "#E7DC15" }} />}
             <h2 className="monitoring-desc">{type.type}</h2>
           </div>
-          <span className="value">{message} {type.unit}</span>
+          <span className="value">
+            {message} {type.unit}
+          </span>
         </div>
-        <AreaRecharts data={data} type={monitoredData} width={width} />
+        <AreaRecharts data={data} type={monitoredData} width={width} period={period} screenWidth={window.innerWidth} />
       </div>
     </div>
   );

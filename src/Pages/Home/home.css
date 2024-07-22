@@ -40,6 +40,9 @@
   
   .home-grid-right {
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
     padding: var(--space-md);
     min-width: 400px; /* ensure a minimum width for content */
   }

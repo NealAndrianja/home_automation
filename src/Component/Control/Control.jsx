@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./control.css";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
-import socket from '../../socketFile'
-import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
+import socket from "../../socketFile";
+import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -56,24 +56,22 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
-export const Control = () => {
+export const Control = ({ title, type, topic }) => {
   const [checked, setChecked] = useState(true);
 
   useEffect(() => {
-    socket.emitMessage("IO", checked);
+    socket.emitMessage(`${topic}`, checked);
     // Listen for 'IO broadcast' event from server
-    socket.socket.on("IO broadcast", (data) => {
+    socket.socket.on(`${topic} broadcast`, (data) => {
       setChecked(data);
       console.log("Broadcast received: " + data);
     });
 
     // Clean up listener on component unmount
     return () => {
-      socket.socket.off("IO broadcast");
+      socket.socket.off(`${topic} broadcast`);
     };
-  },[checked])
-
-  
+  }, [checked]);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -82,7 +80,7 @@ export const Control = () => {
   return (
     <div className="control-container">
       <div className="control">
-        <span className="control-state">{checked?"ON":"OFF"}</span>
+        <span className="control-state">{title}</span>
         <IOSSwitch
           sx={{ m: 1 }}
           defaultChecked
@@ -91,7 +89,9 @@ export const Control = () => {
         />
       </div>
       <div className="control-icon">
-        <ElectricalServicesIcon style={{fontSize: "50px", color: checked && "var(--complementary)"}}/>
+        <ElectricalServicesIcon
+          style={{ fontSize: "50px", color: checked && "var(--complementary)" }}
+        />
       </div>
     </div>
   );

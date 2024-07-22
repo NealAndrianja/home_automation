@@ -1,32 +1,16 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./device.css";
 import { TableRow } from "../../Component/tableRow/TableRow";
 import AddIcon from "@mui/icons-material/Add";
 import { AddDeviceModal } from "../../Component/Modals/addDevice/AddDeviceModal";
 import { EditDeviceModal } from "../../Component/Modals/editDevice/EditDeviceModal";
 import { DeleteConfirmationModal } from "../../Component/Modals/deleteConfirmation/DeleteConfirmationModal";
+import { DeviceContext, ACTIONS } from "../../Context/DeviceContext";
 import axios from "axios";
-import { DeviceContext } from "../../Context/DeviceContext";
-import { ACTIONS } from "../../Context/DeviceContext";
 
 export const Device = () => {
   const { state, dispatch } = useContext(DeviceContext);
   const { devices, showModal, modalType, currentDevice } = state;
-
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        "http://192.168.1.198:3001/data/devices"
-      );
-      dispatch({ type: ACTIONS.SET_DEVICES, payload: response.data });
-    } catch (error) {
-      console.error("Error fetching devices:", error);
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   const handleAddDevice = async (newDevice) => {
     try {
@@ -35,7 +19,6 @@ export const Device = () => {
         newDevice
       );
       dispatch({ type: ACTIONS.ADD_DEVICE, payload: response.data });
-      fetchData()
       dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: { modalType: null } });
     } catch (error) {
       console.error("Error adding device:", error);
@@ -44,11 +27,8 @@ export const Device = () => {
 
   const handleDeleteDevice = async (serialNumber) => {
     try {
-      await axios.delete(
-        `http://192.168.1.198:3001/data/devices/${serialNumber}`
-      );
+      await axios.delete(`http://192.168.1.198:3001/data/devices/${serialNumber}`);
       dispatch({ type: ACTIONS.DELETE_DEVICE, payload: serialNumber });
-      fetchData()
       dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: { modalType: null } });
     } catch (error) {
       console.error("Error deleting device:", error);
@@ -62,7 +42,6 @@ export const Device = () => {
         updatedDevice
       );
       dispatch({ type: ACTIONS.EDIT_DEVICE, payload: response.data });
-      fetchData()
       dispatch({ type: ACTIONS.TOGGLE_MODAL, payload: { modalType: null } });
     } catch (error) {
       console.error("Error editing device:", error);
@@ -90,7 +69,7 @@ export const Device = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Brand</th>
+              <th>Type</th>
               <th>Model</th>
               <th>Serial N°</th>
               <th>Status</th>

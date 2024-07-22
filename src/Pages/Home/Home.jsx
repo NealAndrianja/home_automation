@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./home.css";
 import { Welcome } from "../../Component/Welcome/Welcome";
 import { Control } from "../../Component/Control/Control";
@@ -10,11 +10,15 @@ import { ControlSlide } from "../../Component/Control/ControlSlide";
 import BoltIcon from "@mui/icons-material/Bolt";
 import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import ElectricMeterIcon from "@mui/icons-material/ElectricMeter";
+import { DeviceContext } from "../../Context/DeviceContext";
+import { topicComponentMap } from "../../topicComponentMap";
 
 const room = ["living room", "garage", "kids room", "parent room"];
 
 export const Home = () => {
+  const { state } = useContext(DeviceContext);
   const [selectedRoom, setSelectedRoom] = useState("");
+  console.table(state.devices);
 
   return (
     <div className="home-container">
@@ -32,48 +36,68 @@ export const Home = () => {
               />
             </div>
             <div className="room-section-middle">
-              <Control />
-              <ControlSlide />
+              {state.devices.map((device) =>
+                device.topics.command.map((topic) =>
+                  topicComponentMap[topic]
+                    ? React.createElement(topicComponentMap[topic].component, {
+                        key: topic,
+                        ...topicComponentMap[topic].props,
+                      })
+                    : null
+                )
+              )}
+
+              {/* {state.devices.map((device) => {
+                device.topics.command.map((topic) => {
+                  return topicComponentMap[topic]
+                    ? React.createElement(topicComponentMap[topic].component, {
+                        key: topic,
+                        ...topicComponentMap[topic].props,
+                      })
+                    : null;
+                });
+              })} */}
+
+              {/* <ControlSlide /> */}
             </div>
             <div className="room-section-bottom">
-              <Monitoring
-                monitoredData={"power"}
-                type={{
-                  title: "Socket Monitoring",
-                  type: "Power",
-                  unit: "W",
-                  topic: "home/esp32/power"
-                }}
-                Icon={BoltIcon}
-                width={350}
-              />
-              <TempGauge/>
+              {state.devices.map((device) =>
+                device.topics.data
+                  .filter(
+                    (topic) =>
+                      !topic.includes("voltage") &&
+                      !topic.includes("frequency") &&
+                      !topic.includes("energy") &&
+                      !topic.includes("current")
+                  )
+                  .map((topic) =>
+                    topicComponentMap[topic]
+                      ? React.createElement(
+                          topicComponentMap[topic].component,
+                          {
+                            key: topic,
+                            ...topicComponentMap[topic].props,
+                          }
+                        )
+                      : null
+                  )
+              )}
             </div>
           </div>
         </div>
         <div className="home-grid-right">
-          <Monitoring
-            monitoredData={"temperature"}
-            type={{
-              title: "Temperature Monitoring",
-              type: "Temperature",
-              unit: "°C",
-              topic: "home/esp32/temperature"
-            }}
-            Icon={DeviceThermostatIcon}
-            width={350}
-          />
-          <Monitoring
-            monitoredData={"voltage"}
-            type={{
-              title: "Power Monitoring",
-              type: "Voltage",
-              unit: "V",
-              topic: "home/esp32/voltage"
-            }}
-            Icon={ElectricMeterIcon}
-            width={350}
-          />
+          {state.devices.map((device) =>
+            device.topics.data
+              .filter((topic) => !topic.includes("power"))
+              .map((topic) =>
+                topicComponentMap[topic]
+                  ? React.createElement(topicComponentMap[topic].component, {
+                      key: topic,
+                      ...topicComponentMap[topic].props,
+                    })
+                  : null
+              )
+          )}
         </div>
       </div>
     </div>

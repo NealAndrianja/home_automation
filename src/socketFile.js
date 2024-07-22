@@ -1,12 +1,12 @@
 import io from "socket.io-client";
 
 const topics = [
-  "home/esp32/voltage",
-  "home/esp32/current",
-  "home/esp32/power",
-  "home/esp32/energy",
-  "home/esp32/frequency",
-  "home/esp32/pf",
+  "prise/5678/voltage",
+  "prise/5678/current",
+  "prise/5678/power",
+  "prise/5678/energy",
+  "prise/5678/frequency",
+  "prise/5678/pf",
 ];
 class SocketInstance {
   constructor() {

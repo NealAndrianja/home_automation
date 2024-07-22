@@ -1,4 +1,5 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect, useCallback } from "react";
+import axios from "axios";
 
 export const DeviceContext = createContext();
 
@@ -64,6 +65,19 @@ const reducer = (state, action) => {
 
 export const DeviceProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await axios.get("http://192.168.1.198:3001/data/devices");
+      dispatch({ type: ACTIONS.SET_DEVICES, payload: response.data });
+    } catch (error) {
+      console.error("Error fetching devices:", error);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <DeviceContext.Provider value={{ state, dispatch }}>

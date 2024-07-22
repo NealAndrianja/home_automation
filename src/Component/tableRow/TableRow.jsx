@@ -79,7 +79,7 @@ export const TableRow = ({ device, onDelete, onEdit }) => {
   return (
     <tr>
       <td>{device.name}</td>
-      <td>{device.brand}</td>
+      <td>{device.type}</td>
       <td>{device.model}</td>
       <td>{device.serialNumber}</td>
       <td>

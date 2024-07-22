@@ -1,3 +1,8 @@
+.gauge-title {
+  font-size: 1.1em !important;
+  margin-bottom: var(--space-s); /* Ensure proper spacing */
+}
+
 .gauge-container {
   position: relative;
   width: 250px;
@@ -54,6 +59,10 @@
 }
 
 @media (max-width: 480px) {
+  .gauge-title {
+    font-size: 0.9em !important;
+  }
+
   .gauge-container {
     max-width: 150px;
     max-height: 150px;

@@ -5,7 +5,7 @@ import axios from "axios";
 export const AddDeviceModal = ({ toggleModal, onAdd }) => {
   const [formData, setFormData] = useState({
     name: "",
-    brand: "",
+    type: "",
     model: "",
     serialNumber: "",
     isActive: false
@@ -41,12 +41,12 @@ export const AddDeviceModal = ({ toggleModal, onAdd }) => {
             />
           </div>
           <div className="form-element">
-            <label>Device brand</label>
+            <label>Device type</label>
             <input
               type="text"
-              placeholder="Enter device brand"
-              name="brand"
-              value={formData.brand}
+              placeholder="Enter device type"
+              name="type"
+              value={formData.type}
               onChange={handleChange}
             />
           </div>

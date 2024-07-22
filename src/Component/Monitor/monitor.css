@@ -10,7 +10,7 @@
   }
   
   .monitoring-title {
-    font-size: 1.25em;
+    font-size: 1.1em !important;
     margin-bottom: var(--space-s); /* Ensure proper spacing */
   }
   
@@ -59,7 +59,7 @@
   /* Mobile screens */
   @media (max-width: 480px) {
     .monitoring-title {
-      font-size: 1em;
+      font-size: 0.9em !important;
     }
   
     .monitoring-block {

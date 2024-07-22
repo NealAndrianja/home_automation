@@ -3,20 +3,20 @@ import MuiSlider from "../mui_component/MuiSlider";
 import WbIncandescentIcon from "@mui/icons-material/WbIncandescent";
 import socket from "../../socketFile";
 
-export const ControlSlide = () => {
+export const ControlSlide = ({ title, type, topic }) => {
   const [brightness, setBrightness] = useState(30);
 
   useEffect(() => {
-    socket.emitMessage("brightness", brightness);
+    socket.emitMessage(`${topic}`, brightness);
     // Listen for 'IO broadcast' event from server
-    socket.socket.on("brightness broadcast", (data) => {
+    socket.socket.on(`${topic} broadcast`, (data) => {
       setBrightness(data);
       console.log("Broadcast received: " + data);
     });
 
     // Clean up listener on component unmount
     return () => {
-      socket.socket.off("brightness broadcast");
+      socket.socket.off(`${topic} broadcast`);
     };
   }, [brightness]);
 
